@@ -38,71 +38,55 @@ export default class Auth extends Component {
         validations.push(this.state.email && this.state.email.includes('@'))
         validations.push(this.state.password && this.state.password.length >= 6)
 
+        if (this.state.stageNew) {
+            validations.push(this.state.name && this.state.name.trim().length >= 3)
+            validations.push(this.state.password === this.state.confirmPassword)
+        }
+
         const validForm = validations.reduce((t, a) => t && a)
 
         return (
 
             <SafeAreaView style={styles.container}>
-                {/*  {!this.state.stageNew &&
-                    <Text style={styles.title}>Bem-Vindo</Text>
-                }
-                {!this.state.stageNew &&
-                    <Text style={{ fontWeight: 'bold', fontSize: 40, }}>ao</Text>
-                }
- */}
+
                 <Image source={Logo} style={styles.logo} />
                 <View style={styles.formContainer}>
+
+                    <Text style={styles.label}>Nome</Text>
+
+                    <AuthInput icon='account-outline' placeholder='Nome' value={this.state.name}
+                        style={styles.input}
+                        value={this.state.name}
+                        onChangeText={name => this.setState({ name })} />
 
                     <Text style={styles.label}>E-mail</Text>
                     <AuthInput icon='at' placeholder='example@email.com'
                         value={this.state.email} style={styles.input}
-                        autoFocus={false} keyboardType='email-address' 
                         onChangeText={email => this.setState({ email })} />
                     <Text style={styles.label}>Senha</Text>
                     <AuthInput
                         icon='lock-outline'
                         placeholder='Senha' value={this.state.password}
-                        secureTextEntry={true} 
+                        secureTextEntry={true}
                         onChangeText={password => this.setState({ password })}
                     />
 
-                    <TouchableOpacity style={[styles.buttonLogin, validForm ? {} : { backgroundColor: '#DDD' }]}>
-                        <Text style={styles.buttonText}>Login</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.label}>Confirme sua Senha</Text>
 
-                    <TouchableOpacity style={{ paddingTop: 10, 
-                        flex: 1, 
-                        marginTop: 20,
-                        alignSelf: 'center' }}
+
+                    <AuthInput icon='asterisk' placeholder='Confirmação de Senha'
+                        value={this.state.confirmPassword}
+                        style={styles.input} secureTextEntry={true}
+                        onChangeText={confirmPassword => this.setState({ confirmPassword })} />
+
+                    <TouchableOpacity style={[styles.buttonLogin, validForm ? {} : { backgroundColor: '#DDD' }]}>
+                        <Text style={styles.buttonText}>Registrar</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ paddingTop: 0, flex: 1, marginTop: 20, alignSelf: 'center' }}
                         onPress={() => this.props.navigation.navigate('SigningOrLogin')}>
                         <Text >Cancelar</Text>
                     </TouchableOpacity>
                 </View>
-
-
-
-                {/* {!this.state.stageNew &&
-                    <Text style={styles.conectar}>Conectar ou fazer login com:</Text>
-                }
-                {!this.state.stageNew &&
-                    <View style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        width: '50%',
-                        paddingBottom: 50
-                    }}>
-
-                        <TouchableOpacity>
-                            <Icon style={styles.icon} name="google" size={30}></Icon>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Icon style={styles.icon} name="apple" size={30}></Icon>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Icon style={styles.icon} name="facebook" size={30}></Icon>
-                        </TouchableOpacity>
-                    </View>
-                } */}
 
             </SafeAreaView>
         )
@@ -135,7 +119,7 @@ const styles = StyleSheet.create({
         width: 250,
         height: 150,
         resizeMode: 'contain',
-        marginTop: 100,
+        marginTop: 50,
         flex: 1
     },
     buttonText: {
@@ -150,7 +134,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignSelf: 'center',
         width: '100%',
-        marginTop: 35
+        marginTop: 15
     },
     title: {
         //flex: 1,
