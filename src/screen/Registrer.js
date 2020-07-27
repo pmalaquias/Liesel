@@ -52,6 +52,8 @@ export default class Auth extends Component {
                 <Image source={Logo} style={styles.logo} />
                 <View style={styles.formContainer}>
 
+                    <Text style={styles.title}>Criar uma Conta</Text>
+
                     <Text style={styles.label}>Nome</Text>
 
                     <AuthInput icon='account-outline' placeholder='Nome' value={this.state.name}
@@ -79,7 +81,8 @@ export default class Auth extends Component {
                         style={styles.input} secureTextEntry={true}
                         onChangeText={confirmPassword => this.setState({ confirmPassword })} />
 
-                    <TouchableOpacity style={[styles.buttonLogin, validForm ? {} : { backgroundColor: '#DDD' }]}>
+                    <TouchableOpacity style={[styles.buttonLogin, validForm ? {} : { backgroundColor: '#DDD' }]}
+                        onPress={() => this.props.navigation.navigate('RegisterBook')}>
                         <Text style={styles.buttonText}>Registrar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ paddingTop: 0, flex: 1, marginTop: 20, alignSelf: 'center' }}
@@ -108,7 +111,7 @@ const styles = StyleSheet.create({
         //backgroundColor: 'rgba(0,0,0,0.3)',
         padding: 20,
         width: '90%',
-        flex: 3,
+        flex: 5,
     },
     input: {
         marginTop: 10,
@@ -138,9 +141,10 @@ const styles = StyleSheet.create({
     },
     title: {
         //flex: 1,
-        fontWeight: 'bold',
-        fontSize: 40,
-        paddingTop: 40
+        
+        fontSize: 25,
+        fontWeight: 'normal',
+        alignSelf: 'center'
     },
     label: {
         paddingLeft: 20,

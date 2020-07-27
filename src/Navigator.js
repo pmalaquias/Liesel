@@ -5,6 +5,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import Auth from './screen/Auth'
 import SigningOrLogin from './screen/SigningOrLogin'
 import Registrer from './screen/Registrer'
+import RegisterBook from './screen/RegisterBook'
 
 const menuConfig = {
     initialRouteName: 'Siging or Login',
@@ -24,6 +25,10 @@ const mainRoutes = {
     Registrer :{
         name: 'Registrer',
         screen: Registrer
+    },
+    RegisterBook :{
+        name: 'RegisterBook',
+        screen: RegisterBook
     }
 }
 

@@ -51,7 +51,7 @@ export default class SigningOrLogin extends Component {
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                     width: '50%',
-                    paddingBottom: 120
+                    paddingBottom: 100
                 }}>
 
                     <TouchableOpacity>
